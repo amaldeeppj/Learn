@@ -30,3 +30,17 @@ variable "port" {
 
   
 }
+
+
+variable "ami" {
+    type = string
+    default = "ami-081dc0707789c2daf"
+  
+}
+
+variable "instanceType" {
+    type = string
+    default = "t2.micro"
+  
+}
+
