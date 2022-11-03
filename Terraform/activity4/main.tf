@@ -24,6 +24,28 @@ resource "azurerm_virtual_network" "tfnw" {
    
   }
 
+  subnet {
+    name           = "subnet3"
+    address_prefix = "10.0.3.0/24"
+  }
+
+  subnet {
+    name           = "subnet4"
+    address_prefix = "10.0.4.0/24"
+   
+  }
+
+  subnet {
+    name           = "subnet5"
+    address_prefix = "10.0.5.0/24"
+  }
+
+  subnet {
+    name           = "subnet6"
+    address_prefix = "10.0.6.0/24"
+   
+  }
+
   tags = {
     "name" = "virtual network"
   }
