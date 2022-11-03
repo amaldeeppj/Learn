@@ -18,3 +18,15 @@ variable "instance" {
     type = list(string)
     default = [ "web", "db", "cache", "auth" ]
 }
+
+variable "service" {
+    type = list(string)
+    default = [ "SSH", "HTTP", "HTTPS", "FTP", "DB_connection" ]
+}
+
+variable "port" {
+    type = list(number)
+    default = [ 22, 80, 443, 21, 3306 ]
+
+  
+}
