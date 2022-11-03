@@ -34,7 +34,7 @@ variable "port" {
 
 variable "ami" {
     type = string
-    default = "ami-081dc0707789c2daf"
+    default = "ami-09d3b3274b6c5d4aa"
   
 }
 
@@ -46,6 +46,6 @@ variable "instanceType" {
 
 variable "keyName" {
     type = string
-    default = "local_linux.pem"
+    default = "local_linux"
 }
 
