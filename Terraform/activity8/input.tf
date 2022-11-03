@@ -44,3 +44,8 @@ variable "instanceType" {
   
 }
 
+variable "keyName" {
+    type = string
+    default = "local_linux.pem"
+}
+
