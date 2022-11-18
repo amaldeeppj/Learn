@@ -93,7 +93,14 @@ Route table entries
 SG entries of EC2s
 
 
+Screenshot 1: Route table entries of frontend-public-rtb
+Screenshot 2: Route table entries of frontend-private-rtb
+Screenshot 3: Route table entries of backend-public-rtb
+Screenshot 4: Route table entries of backend-private-rtb
+Screenshot 5: SG entries of bastion server
+Screenshot 6: SG entries of webserver frontend server
+Screenshot 7: SG entries of database backend server
 
-
+Website working fine. URL: http://ec2-3-16-69-208.us-east-2.compute.amazonaws.com/ 
 
 
