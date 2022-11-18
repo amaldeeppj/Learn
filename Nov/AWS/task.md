@@ -1,5 +1,7 @@
-18 nov 22
+### 18 nov 22
 
+
+__Task 1__
 
 Created an instance and installed apache. In security group - test-sg, allowed all traffic for both inbound and outbound.  
 Screenshot 1: Security group details
