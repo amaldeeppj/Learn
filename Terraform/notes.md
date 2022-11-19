@@ -7,3 +7,9 @@ https://developer.hashicorp.com/terraform/tutorials/modules
 
 https://developer.hashicorp.com/terraform/tutorials/certification/associate-study?in=terraform%2Fcertification
 
+
+
+root module - conf files in current working directory 
+child module - a module that is called by another configuration
+
+Name your provider terraform-<PROVIDER>-<NAME>
