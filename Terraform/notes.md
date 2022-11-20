@@ -15,7 +15,7 @@ child module - a module that is called by another configuration
 
 
 Name your provider like this:
-> ***terraform - < PROVIDER > - < NAME >***
+> ***terraform-<\PROVIDER>-<\NAME>***
 
 
 
