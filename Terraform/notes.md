@@ -44,5 +44,5 @@ The provider should be inherited from the root module rather than the child modu
 
 
 
-The values in output.tf inside root module will be shown to the user. 
+The values in `output.tf` inside root module will be shown to the user. 
 The values in output.tf file can be used to pass information about parts of the infra to another modules. ie., To pass values between modules. 
