@@ -12,7 +12,7 @@ https://developer.hashicorp.com/terraform/tutorials/certification/associate-stud
 root module - conf files in current working directory   
 child module - a module that is called by another configuration
 
-Name your provider terraform-<PROVIDER>-<NAME>
+Name your provider __terraform-<PROVIDER>-<NAME>__
 
 
 * Structure of module
