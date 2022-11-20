@@ -35,5 +35,14 @@ Name your provider like this:
     * *.tfvars 
 
 
-> A .gitignore file can be used here: https://github.com/github/gitignore/blob/main/Terraform.gitignore
+> A .gitignore file can be used here. Refer: https://github.com/github/gitignore/blob/main/Terraform.gitignore
 
+
+
+The `provider` block should not be added in the module.   
+The provider should be inherited from the root module rather than the child module. (Whoever using the module should specify the provider)   
+
+
+
+The values in output.tf inside root module will be shown to the user. 
+The values in output.tf file can be used to pass information about parts of the infra to another modules. ie., To pass values between modules. 
