@@ -16,8 +16,8 @@ Name your provider terraform-<PROVIDER>-<NAME>
 
 
 * Structure of module
-    LICENSE
-    README.md
-    main.tf
-    variables.tf
-    outputs.tf
+    * LICENSE
+    * README.md
+    * main.tf
+    * variables.tf
+    * outputs.tf
