@@ -13,3 +13,11 @@ root module - conf files in current working directory
 child module - a module that is called by another configuration
 
 Name your provider terraform-<PROVIDER>-<NAME>
+
+
+* Structure of module
+    LICENSE
+    README.md
+    main.tf
+    variables.tf
+    outputs.tf
