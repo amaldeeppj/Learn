@@ -46,3 +46,10 @@ The provider should be inherited from the root module rather than the child modu
 
 The values in `output.tf` inside root module will be shown to the user. 
 The values in output.tf file can be used to pass information about parts of the infra to another modules. ie., To pass values between modules. 
+
+
+
+> When creating a module, the only variables defined inside the module can be assigned while calling the module. Similarly, the values we will get in return from the modules are the values defined in outputs.tf file. Thus to pass values to the module, first we have to declare them as variables inside the module. To retrieve some values in return from the module inorder to use them for other resources, we have to declare as output inside the module. Refer here:   
+https://github.com/amaldeeppj/Learn/tree/main/Terraform/activity11   
+
+
