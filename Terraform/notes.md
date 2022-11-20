@@ -21,3 +21,11 @@ Name your provider terraform-<PROVIDER>-<NAME>
     * main.tf
     * variables.tf
     * outputs.tf
+
+* Files and directories shouldn't be shared with modules: 
+    * terraform.tfstate 
+    * .terraform 
+    * *.tfvars 
+
+A .gitignore file can be used here: https://github.com/github/gitignore/blob/main/Terraform.gitignore
+
