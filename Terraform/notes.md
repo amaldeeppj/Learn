@@ -53,3 +53,7 @@ The values in output.tf file can be used to pass information about parts of the 
 https://github.com/amaldeeppj/Learn/tree/main/Terraform/activity11   
 
 
+
+
+
+> Objects map a specific set of named keys to values.   
