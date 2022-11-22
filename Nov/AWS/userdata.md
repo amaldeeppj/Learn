@@ -96,3 +96,12 @@ hostnamectl set-hostname docker.amaldeep.tech
 curl -fsSL https://get.docker.com -o /var/tmp/get-docker.sh
 sh /var/tmp/get-docker.sh
 usermod -aG docker ec2-user
+
+
+
+
+# sleep until instance is ready
+until [[ -f /var/lib/cloud/instance/boot-finished ]]; do
+  sleep 1
+done
+
