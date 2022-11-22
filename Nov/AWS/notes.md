@@ -9,6 +9,8 @@ https://varunmanik1.medium.com/how-to-create-aws-vpc-in-10-steps-less-than-5-min
 
 
 
+lost keypair:
+https://aws.amazon.com/premiumsupport/knowledge-center/ec2-user-account-cloud-init-user-data/
 
 
 
