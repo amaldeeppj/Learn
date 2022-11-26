@@ -56,4 +56,22 @@ https://github.com/amaldeeppj/Learn/tree/main/Terraform/activity11
 
 
 
-> Objects map a specific set of named keys to values.   
+> Objects map a specific set of named keys to values.
+> map(string), keys  and values are strings. This can be used to declare key value pairs without any predefined keys and values. (Eg in tags section, we can declare a map(string) to let the user define all the tags)
+
+
+```
+variable "files" {
+  description = "Configuration for website files."
+  type = object({
+    terraform_managed     = bool
+    error_document_key    = optional(string, "error.html")
+    index_document_suffix = optional(string, "index.html")
+    www_path              = optional(string)
+  })
+}
+```
+
+The above code is an example of module object  atributes. Input varianbles of a module can be encapsulated in a single object, so that related options can be grouped together. 
+
+> optional: can be used to define the variable is optional. Also can provide default value and data type.  
