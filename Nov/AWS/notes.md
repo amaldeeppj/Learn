@@ -266,3 +266,25 @@ subnet access
 sg 2049
 
 
+
+
+
+
+
+# 26 nov 2022
+
+
+
+* Auto Scaling
+
+> Auto Scaling Group    
+group of ec2 instances
+ec2 instances are created by launch configuration 
+auto scaling group can have 1 launch conf at a time 
+
+> Launch Configuration 
+instructions to create ec2
+
+
+
+alias vs cname
