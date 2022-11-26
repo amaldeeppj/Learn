@@ -3,8 +3,8 @@
 #!/bin/bash
 
 yum update -y
-hostnamectl set-hostname frontend.zomato.com
-yum install httpd -y 
+hostnamectl set-hostname frontend.amaldeep.tech
+yum install git httpd -y 
 amazon-linux-extras install php7.4  -y 
 systemctl enable httpd.service
 systemctl restart httpd.service
@@ -18,7 +18,7 @@ systemctl restart httpd.service
 #!/bin/bash
 
 yum update -y
-hostnamectl set-hostname backend.zomato.com
+hostnamectl set-hostname backend.amaldeep.tech
 yum install mariadb-server -y 
 systemctl enable mariadb.service
 systemctl restart mariadb.service
