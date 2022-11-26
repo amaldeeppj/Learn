@@ -261,7 +261,7 @@ efs payment for usage
 
 
 
-> mount issue
+> in case mount issue, check:
 subnet access
 sg 2049
 
