@@ -86,3 +86,35 @@ https://developer.hashicorp.com/terraform/language/data-sources
 
 https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ami
 
+
+
+
+> how to use a module multiple times in the same place: https://stackoverflow.com/questions/65827717/how-to-get-public-ip-of-ec2-instance-in-terraform
+
+
+* variable validation    
+
+https://developer.hashicorp.com/terraform/language/expressions/custom-conditions#input-variable-validation
+
+
+* input variables
+
+https://developer.hashicorp.com/terraform/language/values/variables#custom-validation-rules
+
+
+
+* Validate Modules with Custom Conditions
+
+https://developer.hashicorp.com/terraform/tutorials/configuration-language/custom-conditions
+
+
+* substr 
+
+https://developer.hashicorp.com/terraform/language/functions/substr
+
+
+
+* file 
+
+https://developer.hashicorp.com/terraform/language/functions/file
+
