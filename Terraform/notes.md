@@ -75,3 +75,14 @@ variable "files" {
 The above code is an example of module object  atributes. Input varianbles of a module can be encapsulated in a single object, so that related options can be grouped together. 
 
 > optional: can be used to define the variable is optional. Also can provide default value and data type.  
+
+
+
+
+# Data source 
+
+
+https://developer.hashicorp.com/terraform/language/data-sources
+
+https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ami
+
