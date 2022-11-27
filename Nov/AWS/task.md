@@ -391,3 +391,93 @@ URLs:
 http://shopping.amaldeep.tech
 https://shopping.amaldeep.tech
 
+
+
+
+
+
+
+
+
+
+# 26 nov 2022
+
+
+
+
+create launch conf
+shopping-app-LC
+
+ami id - 
+sg 
+key pair
+userdata 
+
+
+create autoscaling group 
+shopping-app-ASG 
+
+vpc 
+subnet 
+
+grace 120
+
+tag 
+
+
+load balancer 
+shopping-app-CLB
+
+http https 
+
+do not select instance 
+
+connection draining 5 sec 
+
+
+edit asg 
+add clb 
+update
+
+
+screenshot 
+clb > instances 
+asg > instance management 
+
+URL: https:// 
+
+
+edit asg 
+min max > 4
+
+clb > instances
+
+
+
+edit asg > 
+healthcheck > elb
+update 
+
+disable healthcheck file in 1 ec2 
+
+screenshot 
+ec2 console
+asg > activity history 
+
+
+
+
+
+
+
+URL: https://shopping.amaldeep.tech/
+Screenshot: Instances in Autoscaling group with Desired capacity = 2
+Screenshot: Instances in Load balancer
+
+
+Screenshot: Instances in Autoscaling group with Desired capacity = 4
+Screenshot: Instances in Load balancer
+
+
+Screenshot: 1 Instance replaced when health check failed
+Screenshot: activity history - failed ec2 replaced
