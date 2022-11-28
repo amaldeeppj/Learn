@@ -288,3 +288,62 @@ instructions to create ec2
 
 
 alias vs cname
+
+in aws route53, adding a domain as alias to a service will take only 1 dns query to fetch the IP, whereas addin the domain as cname for the service will need 2 dns queries to get the IP address
+
+
+
+
+
+
+
+
+# 28 nov 2022
+
+> cannot make autoscaling group without ec2 or launch configuration or launch template
+
+autoscaling group does not have payment but ec2 instances have
+
+
+
+* Adding existing ec2 instance to autoscaling group 
+
+    * create ami from exinsting ec2 instance 
+    * create a launch conf to create ec2 from the ami
+    * add the existing ec2 to ASG (desired and min capacity should be 0 when creating ASG, max should be number of instances are going to add to ASG [`creating emplty instance`])
+    * instance > instance settings > attach to asg 
+    * update min and desired, instances will come up even though the min is 0, once an instance is attached
+
+    * or create an asg and max should be higher than desired, then attach the existing ec2 to asg
+
+
+> fleet management aka static ASG
+
+disired - number of instances to launch when deploying ASG 
+
+
+
+> Standby mode
+
+the instance state will not be monitored by ASG 
+use standby to update existing server in ASG 
+update min values as needed 
+
+
+> detach instance from ec2
+
+asg is not needed - set min to 0 if and detach instances from the ASG
+
+
+
+> while creating an ASG, create an AMI with everything needed to deploy when launching instance from it. (edit ssl redirection)
+    `create new AMI for newer versions of application`
+
+
+> launch configuration is immutable - cannot edit 
+ create a copy instead and make necessary changes in it
+ update ASG with new launch conf, update tags as well
+ delete instances/ detach instance to update the version of application
+  
+
+ `instance refresh`
