@@ -481,3 +481,110 @@ Screenshot: Instances in Load balancer
 
 Screenshot: 1 Instance replaced when health check failed
 Screenshot: activity history - failed ec2 replaced
+
+
+
+
+
+
+
+
+# 28 nov 2022
+
+
+
+create instance 
+install website 
+
+
+
+task 1 - created instance with sample data.
+
+screenshot: instance details from console 
+screenshot: website loading from instance 
+
+
+task 2 - add the existing instance to an Auto Scaling Group
+To achieve this - 
+create an AMI: webserver-ami
+create Launch configuration to launch instances identical to existing EC2: webserver-lc
+create ASG: webservver-asg; min-0, max-1, desired-0 : to create an empty ASG and add existing EC2 to ASG; AZs- ap-south-1a, ap-south-1b; no load balancer; health check grace period: 120s; 
+attach instance to ASG
+update min value to 1 in ASG
+
+screenshot: instance description - autoscaling group info
+screenshot: ASG instance management tab
+screenshot: ASG activity history
+
+
+task 3 - set instance from ASG to standby mode
+
+screenshot: error message when trying to lower the number of instances below min without opting for `Add a new instance to the Auto Scaling group to balance the load`
+
+change min value to 0 and then move instance from ASG to standby mode 
+
+screenshot: instance in standby mode
+
+stop and start instance 
+move instance from standby to `in service`
+
+screenshot: instance is in service under ASG instance management 
+
+
+task 4 - detach ec2 from ASG. Once detached, EC2 will not be managed by ASG. 
+
+screenshot: instance management - no instances as of now
+
+deleted ASG and LC, instance is still intact
+
+
+task 5 - rename ec2 instance name to shopping-application-template 
+create ami: shopping-application-version1-ami
+create lc: shopping-application-version1-lc
+create asg: shopping-application-asg; desired capacity - 2
+
+screenshot: instance management under ASG
+screenshot: instances in console 
+
+create elb: shopping-application-elb
+connection draining: 5sec
+edit asg and attach load balancer 
+alias the domain to load balancer 
+
+screenshot: instances in load balancer 
+
+URL: https://shopping.amaldeep.tech/
+
+
+task 6 - update website code to next version - version 2.0 
+create ami: shopping-application-version2-ami
+create lc: shopping-application-version2-lc
+update launch configuration in ASG 
+updated tags in ASG for EC2 
+
+proceeding with rolling update by terminating each instances with old version
+
+screenshot: ec2 console 
+screenshot: activity history from ASG 
+
+
+task 7 - update code to version 3
+create ami: shopping-application-version3-ami
+create lc: shopping-application-version3-lc
+update launch configuration in ASG 
+update termination policy to oldest launch configuration
+in clb, updata sticky session 
+in asg, updated desired capacity to 4 
+now there are 2 version2 instances and 2 version3 instances 
+
+screenshot: ec2 console with 2 version2 and 2 version3 instances
+
+downgrade desired capacity to 2 with updated termination policy 
+
+screenshot: activity history from ASG
+screenshot: instance management under ASG
+
+
+
+
+
