@@ -588,3 +588,113 @@ screenshot: instance management under ASG
 
 
 
+
+
+
+
+
+
+# 29 nov 2022
+
+
+
+#!/bin/bash
+
+# Define hostname
+#HN=frontend.amaldeep.tech
+
+yum update -y
+#hostnamectl set-hostname $HN
+yum install git httpd -y 
+amazon-linux-extras install php7.4  -y 
+systemctl enable httpd.service
+git clone https://github.com/amaldeeppj/webserver_sample_content.git /var/website/
+cp -r  /var/website/*  /var/www/html/
+chown -R apache:apache /var/www/html/*
+systemctl restart httpd.service
+
+
+<h1  style="text-decoration: underline;">Site Not Found</h1>
+
+
+
+task 1 
+create 4 ec2 instances 
+unix.amaldeep.tech ap-south-1a
+unix.amaldeep.tech ap-south-1b
+linux.amaldeep.tech ap-south-1a
+linux.amaldeep.tech ap-south-1b
+
+screenshot: ec2 console 
+
+
+task 2 
+create 2 target groups 
+
+
+<!-- create target group 
+instances
+tg-linux
+healthcheck - http 
+/
+healthy treshold 2
+name tag 
+include 2 linux 
+
+create target group 
+instances
+tg-unix
+healthcheck - http 
+/
+healthy treshold 2
+name tag 
+include 2 unix -->
+
+
+screenshot: target details of target group tg-linux
+screenshot: target details of target group tg-unix 
+
+
+task 3 
+
+create application load balancer my-alb with default action is to forward requests to tg-linux 
+
+
+default listener
+tg-linux 
+
+
+task 4 
+
+in route53 add 3 records
+linux.amaldeep.tech
+unix.amaldeep.tech
+windows.amaldeep.tech
+
+
+task 5 
+edit rules in ALB
+
+alb > listener > edit rules
+add rule for unix 
+host header - forward to 
+
+edit default rule 
+return fixed response 
+text/html
+h1 
+
+screenshot: Rules under alb listener
+
+URLs: 
+http://linux.amaldeep.tech
+http://unix.amaldeep.tech
+http://windows.amaldeep.tech
+
+
+
+delete alb 
+remove listener first, then alb
+target
+instance
+
