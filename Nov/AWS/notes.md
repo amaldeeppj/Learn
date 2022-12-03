@@ -284,6 +284,8 @@ auto scaling group can have 1 launch conf at a time
 
 > Launch Configuration 
 instructions to create ec2
+launch configurations are immutable; cannot edit
+we have to create a new LC and replace it in ASG
 
 
 
@@ -304,6 +306,7 @@ in aws route53, adding a domain as alias to a service will take only 1 dns query
 
 autoscaling group does not have payment but ec2 instances have
 
+> cannot add ec2 instances to ALB directly, need to added to target group first 
 
 
 * Adding existing ec2 instance to autoscaling group 
@@ -347,3 +350,107 @@ asg is not needed - set min to 0 if and detach instances from the ASG
   
 
  `instance refresh`
+
+
+
+
+
+
+
+
+
+
+# 30 nov 2022
+
+
+
+
+* autoscaling termination policy
+
+will execute selected policies from left to right 
+set default policy at the end 
+
+* oldest instance 
+* newest instance
+* oldest launch configuration
+    helpful when upgrading the version 
+* closest to next hour 
+    terminate the instances that are closer to the next billing hour; helps reduce cost 
+* default 
+    useful when there are multiple scaling policies for the auto scaling group; will select the instances from the AZs with most instances running > then will be checking for instances with oldest configuration > then will check for instances closest to next billing hour;  
+
+even if we have deployed termination policy, aws will balance the instances in AZs/subnets
+
+
+* instance protection
+    protects instances from termination while scale in
+    newly launched instances will be protected from scale in by default 
+    can be applied to an instance or an entire ASG 
+
+
+
+
+
+
+
+
+# 01 dec 2022
+
+
+
+* Launch template
+
+    launch conf can only can be used with ASG 
+    Launch template supports versioning
+    can be used to launch instances 
+
+
+
+create ami
+create launch template
+create asg using launch template 
+create empty target group 
+attach target group under alb section in ASG 
+create alb and add target groups
+    > listener port 443 only 
+    > add new listener for port 80 > default action > redirect > https > 443
+
+> for version 2
+create new version for existing launch template 
+create another asg using launch template v2
+create empty target group
+attach target group under alb section in asg v2
+edit 443 listener in alb
+ > add target group for existing domain 
+ > mentiopn weitage
+ > add stickiness(optional)
+
+
+
+in alb http can be redirected to https at load balancer. whereas in clb, http > https redirect has to be done at server
+
+
+when using default launch template in asg, and we have updated defalt version of launch template, the version of ec2 instances launched by asg will be changed
+
+asg will fail to create ec2 if no launch template (if deleted launch template)
+
+
+
+
+
+
+
+
+02 dec 2022
+
+
+
+Horizontal scaling - no of servers
+Vertical scaling - spec of server 
+
+microservices and monolithic archetecture
+
+query string 
+
+
+
