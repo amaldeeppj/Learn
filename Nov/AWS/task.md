@@ -698,3 +698,182 @@ remove listener first, then alb
 target
 instance
 
+
+
+
+
+
+
+# 01 dec 2022
+
+
+
+task 1 
+create ec2
+shopping-application-version1
+create ami 
+shopping-application-ami-version1
+
+update version 
+create ami
+shopping-application-ami-version2
+
+update version 
+create ami
+shopping-application-ami-version3
+
+
+
+task 2 
+
+create launch template 
+shopping-application
+desription version 1 
+add resource tags (ec2 vol, network interface) 
+shopping-application-version1
+
+
+task 3
+create asg 
+shopping-application-asg-version1
+select version 1 
+2 instances 
+no tags 
+
+screenshot: ec2 console - instances created by asg version 1 
+screenshot: website loading from ec2
+screenshot: instance management tab in ASG 
+
+
+task 4 
+
+create empty target group 
+shopping-application-tg-version1
+
+
+screenshot: empty target group version 1
+
+attached target group in asg
+
+screenshot: target group with ec2 instances from asg version 1
+
+
+task 5
+create alb 
+shopping-application 
+listener: https
+
+
+rout53 
+
+screenshot: rules under listener 443
+
+edit rule to redirect to 443
+
+screenshot: listeners under ALB
+URL: http://shopping.amaldeep.tech/
+
+
+task 6
+create new version for launch template 
+version 2 
+tag application v2 
+
+screenshot: versions created uner launch template
+
+
+
+task 7 
+create new asg 
+shopping-application-asg-version1
+version 2 
+2 ec2 
+no tags 
+
+
+screenshot: ec2 console with newly created instances from asg version2
+screenshot: instances under ASG version 2
+
+
+task 8 
+new empty target group 
+upate asg 
+
+screenshot: instances under target group version 2 
+
+
+
+task 9 
+asg > edit 443 rule > add tg and weitage 90:10
+
+screesnhot: rules under listener 443 with 90percent traffic to version 1
+
+upadte rule, weitage v2 
+
+
+
+
+
+
+
+
+
+
+# 02 dec 2022
+
+
+
+
+
+install nginx in ubuntu 
+
+
+
+3 virtual hosts
+
+
+
+
+
+
+
+
+
+
+
+
+# 03 dec 2022
+
+
+
+
+
+
+http://home.amaldeep.tech/
+http://order.amaldeep.tech/order/
+http://cart.amaldeep.tech/cart/
+http://product.amaldeep.tech/product
+
+
+create 3 instances 
+install httpd php
+
+
+
+
+
+
+URL: http://shopping.amaldeep.tech/
+URL: http://shopping.amaldeep.tech/result
+Screenshot: Rules under 443 listener 
+Screenshot: 
+
+
+
+URL: http://linux.amaldeep.tech/
+URL: http://unix.amaldeep.tech/ 
+URL: http://windows.amaldeep.tech/
+
+
+URL: http://nginx.amaldeep.tech/
+Screenshot: backend load balancer conf file
