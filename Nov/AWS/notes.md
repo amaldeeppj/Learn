@@ -441,7 +441,7 @@ asg will fail to create ec2 if no launch template (if deleted launch template)
 
 
 
-02 dec 2022
+# 02 dec 2022
 
 
 
@@ -451,6 +451,41 @@ Vertical scaling - spec of server
 microservices and monolithic archetecture
 
 query string 
+
+
+
+
+
+
+
+
+
+
+# 05 dec 2022
+
+
+
+ssl session key generation 
+symmetric vs assymtric 
+hash, checksum 
+
+
+
+* KMS 
+    key generation and management 
+    * 2 types of keys 
+        * AMK - amazon managed keys(free)
+        * CMK - customer managed keys
+    key will be used to encrypt the ec2(resource) by the hypervisor 
+    hypervisor will contact KMS for the key 
+    KMS will create a random value `data key` and will encrypt with CMK -> data key  
+    KMS will pass the `data key` and encrypted `data key` to the hypervisor 
+    hypervisor will keep the encrypted `data key` as metadata inside created volume 
+    hypervisor will store the `data key` given by KMS 
+    hypervisor will encrypt the data inside volume with `data key` on the fly(while transferring data)
+     
+
+
 
 
 
