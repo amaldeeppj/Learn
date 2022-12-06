@@ -478,12 +478,32 @@ hash, checksum
         * CMK - customer managed keys
     key will be used to encrypt the ec2(resource) by the hypervisor 
     hypervisor will contact KMS for the key 
-    KMS will create a random value `data key` and will encrypt with CMK -> data key  
+    KMS will create a random value `data key` and will encrypt with CMK -> encrypted `data key`
     KMS will pass the `data key` and encrypted `data key` to the hypervisor 
     hypervisor will keep the encrypted `data key` as metadata inside created volume 
     hypervisor will store the `data key` given by KMS 
     hypervisor will encrypt the data inside volume with `data key` on the fly(while transferring data)
-     
+    hypervisor will decrypt the data inside volume with `data key` on the fly(while transferring data)
+    `data key` will be removed from hypervisor while stopping the ec2, but ebs volume will remain there
+    while starting the ec2, hypervisor will create the instance(most probably in a different node)
+    but, will attach the old volume to new instance 
+    but the `data key` is not available to decrypt the existing volume 
+    hypervisor will fetch the encrypted `data key` from the volume and will send it to KMS
+    the volume cannot be decrypted if CMK is removed from KMS 
+    if CMK is present and IAM user has permission, KMS will decrypt the encrypted `data key` with CMK and will send it back to the hypervisor
+    encryption and decryptin is symmetric, key is data key 
+    
+    while migrating a decrypted volume to a different region, we need to chose a key at the destination. 
+    the data will be decrypted from source and send to destination
+    at destination, the volume will be again encrypted with new key selected 
+
+
+    secret 0 
+
+
+
+
+    how its decrypted? - symmetric?
 
 
 
