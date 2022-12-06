@@ -3,7 +3,7 @@
 * Identity and Access Management 
 * `Global service` 
 
-* root account: created by default 
+* __root account__: created by default 
 * users: accounts under IAM; `users can be belong to multiple groups` 
 * groups: Contains set of users. `groups cannot contain other groups`
 
