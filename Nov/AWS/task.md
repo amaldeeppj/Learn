@@ -877,3 +877,61 @@ URL: http://windows.amaldeep.tech/
 
 URL: http://nginx.amaldeep.tech/
 Screenshot: backend load balancer conf file
+
+
+
+
+
+
+
+
+
+
+
+# 06 dec 2022
+
+create cmk 
+create ec2; encrypt 
+rename root vol 
+create additional vol 
+partition mount attach 
+fstab
+install apache 
+pubish site 
+
+create iam user; ec2 full access 
+login as user 
+reboot instance 
+stop start instance 
+add user to cmk
+remove ec2user from cmk users 
+
+create a new user and try to create ec2 with encryption
+keys wont be able to see
+add inline policy 
+create ec2 with cmk
+it will not boot 
+
+create another instance 
+
+encrypt unencrypted volume(create instance from snapshot)
+change existing key - create snapshot, while building vol, use encryption and chose another key 
+
+
+
+* once added user to cmk, able to start the instance 
+* while creating new instance with key 
+    user is not authorized to perform kms:list
+
+
+
+
+
+https://797041117166.signin.aws.amazon.com/console
+
+
+
+
+task completed;
+insted of copying inline policy as JSON format, I have added it through visual editor by selecting necessary service, action and resources 
+

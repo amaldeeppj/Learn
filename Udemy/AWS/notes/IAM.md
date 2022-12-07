@@ -21,5 +21,34 @@
 * __inline policy__: policy which is only attached to a user rather than attaching a policy to a group
     users with or without groups can have attached with inline policies
 
+
 ## IAM Policy Structure
 
+* consists of:
+    * __version__: policy language version 
+    * __ID__: identifier of the policy (optional)
+    * __statement__: one or more individual statements are required
+        * __sid__: identifier of the statement
+        * __effect__: 
+
+
+
+
+```
+{
+    "Id": "key-consolepolicy-3",
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Enable IAM User Permissions",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::797041117166:root"
+            },
+            "Action": "kms:*",
+            "Resource": "*"
+        }
+    ]
+}
+
+```

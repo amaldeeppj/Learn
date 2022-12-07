@@ -509,3 +509,21 @@ hash, checksum
 
 
 
+
+
+
+
+
+
+
+# 07 dec 2022
+
+
+
+
+https://docs.aws.amazon.com/cli/latest/userguide/cli-services-ec2-instances.html
+
+
+
+
+
