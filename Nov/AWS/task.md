@@ -935,3 +935,421 @@ https://797041117166.signin.aws.amazon.com/console
 task completed;
 insted of copying inline policy as JSON format, I have added it through visual editor by selecting necessary service, action and resources 
 
+
+
+
+
+
+
+
+
+Screenshot: S3 bucket created 
+Screenshot: object inside s3 bucket 
+Screenshot: Image loading via URL
+
+
+ aws s3 ls
+
+
+
+ aws ec2 run-instances \
+--image-id ami-074dc0a6f6c764218 \
+--instance-type t2.micro \
+--subnet-id subnet-051fcd75dbe892f9a \
+--security-group-ids sg-057661ce90b13bf3d \
+--key-name devops
+
+
+
+
+aws ec2 create-vpc --cidr-block 10.0.1.0/16 --query Vpc.VpcId --output text
+
+aws ec2 create-subnet --vpc-id vpc-08ec9b4b8f63cec1f --cidr-block 10.0.2.0/24
+
+aws ec2 create-key-pair --key-name devops1 --query "KeyMaterial" --output text > devops1.pem
+
+aws ec2 create-security-group --group-name SSHopen --description "Security group for SSH access" --vpc-id vpc-08ec9b4b8f63cec1f
+
+sg-0ade723fecd7b5ae8
+
+
+
+aws ec2 authorize-security-group-ingress --group-id sg-0ade723fecd7b5ae8 --protocol tcp --port 22 --cidr 0.0.0.0/0
+
+ aws ec2 run-instances \
+--image-id ami-074dc0a6f6c764218 \
+--instance-type t2.micro \
+--subnet-id subnet-0694affa899a28ad0 \
+--security-group-ids sg-0ade723fecd7b5ae8 \
+--key-name devops1
+
+
+igw-094c9b82098b98a4c
+
+
+aws ec2 attach-internet-gateway --vpc-id vpc-08ec9b4b8f63cec1f --internet-gateway-id igw-094c9b82098b98a4c
+
+aws ec2 create-route-table --vpc-id vpc-08ec9b4b8f63cec1f --query RouteTable.RouteTableId --output text
+
+rtb-0f0c639df0d0f9c6b
+
+aws ec2 create-route --route-table-id rtb-0f0c639df0d0f9c6b --destination-cidr-block 0.0.0.0/0 --gateway-id igw-094c9b82098b98a4c
+
+aws ec2 describe-route-tables --route-table-id rtb-0f0c639df0d0f9c6b
+
+
+aws ec2 describe-subnets --filters "Name=vpc-id,Values=vpc-08ec9b4b8f63cec1f" --query "Subnets[*].{ID:SubnetId,CIDR:CidrBlock}"
+
+ subnet-0694affa899a28ad0
+
+aws ec2 associate-route-table  --subnet-id  subnet-0694affa899a28ad0 --route-table-id rtb-0f0c639df0d0f9c6b
+
+aws ec2 modify-subnet-attribute --subnet-id subnet-0694affa899a28ad0 --map-public-ip-on-launch
+
+
+
+aws ec2 describe-instances --instance-id i-052f0a6df66415606 --query "Reservations[*].Instances[*].{State:State.Name,Address:PublicIpAddress}"
+
+
+
+
+
+
+
+
+# 08 dec 2022
+
+
+
+create 2 buckets 
+bucket-kevin.amaldeep.tech
+bucket-john.amaldeep.tech
+
+create 2 IAM users
+john
+AKIA3TE22I7XIQKQQSVX
+AKIA3TE22I7XIQKQQSVX
+FBz3boOA+6Bnwmy8MC5+JR9EbawTsfaZyTJTLT1Q
+
+kevin
+AKIA3TE22I7XMH526PXV
+IegD2J60/RmRHj4U/OBZA0t5WbNrEgcx00//6VXj
+
+
+
+
+env:program-s3
+
+
+programatic 
+no policy 
+
+aws cli list profiles 
+aws s3 ls john 
+aws s3 ls kevin 
+
+* 
+Screenshot: created 2 buckets using cli, created IAM users from web console. Configured profiles for aws cli. Now, both IAM users are not given privileges to check s3 buckets. 
+
+
+arn:aws:s3:::bucket-john.amaldeep.tech
+arn:aws:s3:::bucket-kevin.amaldeep.tech
+
+
+create IAM policy for aws s3 
+
+john-s3-policy
+kevin-s3-policy
+
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": ["s3:*"],
+      "Resource": [
+                "arn:aws:s3:::bucket-john.amaldeep.tech",
+                "arn:aws:s3:::bucket-john.amaldeep.tech/*"
+                ]
+    }
+  ]
+}
+
+* 
+Screenshot: kevin-s3-policy
+Screenshot: john-s3-policy
+Screenshot: bucket permissions and access from IAM profiles
+
+
+
+
+*   
+Screenshot: kevin-s3-policy updated
+Screenshot: john-s3-policy updated
+Screenshot: bucket permissions and access from IAM profiles
+
+
+
+
+
+
+{
+      "Effect": "Allow",
+      "Action": ["s3:*"],
+      "Resource": [ "*" ]
+    }
+
+
+* 
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:*"
+            ],
+            "Resource": [
+                "arn:aws:s3:::bucket-john.amaldeep.tech",
+                "arn:aws:s3:::bucket-john.amaldeep.tech/*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListBucket"
+            ],
+            "Resource": [
+                "*"
+            ]
+        }
+    ]
+}
+
+
+
+
+
+
+
+
+
+
+# 09 dec 2022
+
+
+
+
+aws ec2 create-subnet --vpc-id vpc-2f09a348 --cidr-block 10.0.1.0/24
+
+aws ec2 create-subnet --vpc-id vpc-05a615e3e484dedf8 --cidr-block 10.0.1.0/24 --output text --output text --query "Subnet.SubnetId"
+
+
+
+create 2 buckets 
+bucket-kevin.amaldeep.tech
+bucket-john.amaldeep.tech
+
+create 2 users 
+
+kevin 
+AKIA3TE22I7XM3N6HI2Y
+a8PDtSJe1vPh15d7wS4eWoIVKn2Xwc+aGqLvF/ob
+
+john
+AKIA3TE22I7XBSJZZ66U
+NJd3dq9TvEaCNWUqLpIzByvnGwuWgeJpY848w2QM
+
+
+
+create bucket policies 
+
+
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::797041117166:user/kevin"
+      },
+      "Action": "s3:*",
+      "Resource": ["arn:aws:s3:::bucket-kevin.amaldeep.tech",
+                   "arn:aws:s3:::bucket-kevin.amaldeep.tech/*"]
+    }
+  ]
+}
+
+* 
+Screenshot: S3 buckets 
+Screenshot: kevin IAM user 
+Screenshot: john IAM user  
+Screenshot: kevin-s3-policy
+Screenshot: john-s3-policy
+Screenshot: Accessing buckets 
+
+
+
+
+
+create ec2 
+load template 
+
+http://s3website.amaldeep.tech/
+
+
+create role 
+images-s3
+
+policy 
+images-s3-policy
+
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:*"
+            ],
+            "Resource": [
+                "arn:aws:s3:::s3bucket-website.amaldeep.tech",
+                "arn:aws:s3:::s3bucket-website.amaldeep.tech/*"
+            ]
+        }
+    ]
+}
+
+
+
+rewrite enable 
+
+RewriteEngine On
+RewriteRule ^/images/(.*)$  https://s3.ap-south-1.amazonaws.com/s3bucket-website.amaldeep.tech/$1 [L]
+
+
+s3://s3bucket-website.amaldeep.tech/closeup-shot-newlywed-couple-sitting-bench.jpg
+https://s3.ap-south-1.amazonaws.com/s3bucket-website.amaldeep.tech/closeup-shot-newlywed-couple-sitting-bench.jpg
+
+
+
+Screenshot: error when trying to sync images to s3 bucket 
+Screenshot: Role details 
+Screenshot: Bucket operation working from EC2
+Screenshot: S3 Bucket in console
+Screenshot: EC2 metadata for IAM credentials 
+URL: http://s3website.amaldeep.tech/
+URL: https://s3.ap-south-1.amazonaws.com/s3bucket-website.amaldeep.tech/gallery/bearded-stylish-groom-suit-beautiful-blonde.jpg
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+12 dec 2022
+
+
+
+
+
+
+
+
+
+create bucket 
+mys3site.amaldeep.tech
+
+
+upload site 
+
+
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "PublicRead",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": [
+                "s3:GetObject",
+                "s3:GetObjectVersion"
+            ],
+            "Resource": [
+                "arn:aws:s3:::mys3site.amaldeep.tech/*"
+            ]
+        }
+    ]
+}
+
+
+
+
+
+Screenshot: Objects under S3 bucket mys3site.amaldeep.tech
+URL: http://mys3site.amaldeep.tech/
+This URL will redirect to https; website is added to Cloudfront and enabled SSL. 
+
+
+
+
+task 2 
+
+create s3 bucket 
+expiration.amaldeep.tech 
+upload 3 files 
+
+red.txt(tags project:zomato, env:dev )
+blue.txt(tags project:zomato, env:prod )
+green.txt
+
+add 2 lifecycle rules 
+expiration-1: filter project:zomato, env:dev delete after 1 days 
+expiration-2: filter project:zomato, env:prod delete after 2 days
+
+
+Screenshot: S3 bucket lifecycle expiration rule - expiration-1
+Screenshot: S3 bucket lifecycle expiration rule - expiration-2
+
+
+
+task 3 
+
+lifecycle rule 
+standard > after 100 >  standard ia > after 150 > one zone ia > 300 > delete (whole bucket)
+
+Screenshot:  transition and expiration rule for the entire objects of the bucket
+
+
+task 4
+
+replication
+mybucket-src.amaldeep.tech
+mybucket-dst.amaldeep.tech
+
+enable versioning in both
+in src bucket enable replication based on tag 
+project:zomato 
+
+add tag while uploading 
+
+add another object with same tag, right after upload modify tag
+check if this object replicates 
+* no, Replication status - failed
+
+Screenshot: Source bucket rule
+Screenshot: object in source bucket 
+Screenshot: object in destination bucket
+
+
+
