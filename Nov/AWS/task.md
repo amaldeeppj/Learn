@@ -1353,3 +1353,450 @@ Screenshot: object in destination bucket
 
 
 
+
+
+
+
+# 13 dec 2022
+
+
+
+create 2 instances 
+mumbai
+europe
+
+geolocation.amaldeep.tech
+
+task1
+Screenshot: A records for Routing policy - Geolocation
+Screenshot: Geopeeker result of website loading from multiple locations
+Screenshot: Website loading from India
+
+
+
+task2 
+
+healthcheck - server1 - tcp 80 
+record failover.amaldeep.tech
+
+task2
+Screenshot: records for Routing policy - failover
+turned off httpd in first server
+Screenshot: dig results before and after 1st server failed
+
+
+
+task3 
+
+record - weighted.amaldeep.tech
+
+task3 
+Screenshot: DNS record for Routing policy - Weighted
+Screenshot: curl result in `while loop`
+
+
+task 4 
+
+add healthcheck server2 
+record multivalue.amaldeep.tech
+
+task 4 
+Screenshot: DNS record for Routing policy - Multivalue
+turned off httpd in first server
+Screenshot: dig result before and after 1st server failed
+Screenshot: Route 53 healthcheck of both servers
+
+
+
+Screenshot: dig
+Screenshot: healthcheck
+
+
+
+
+
+
+
+
+
+
+
+
+# 15 dec 2022
+
+
+
+create 2 instances 
+server-mumbai
+server-paris
+
+shopping.amaldeep.tech
+
+Screenshot: A Records under Latency routing
+Screenshot: Geopeeker result 
+
+
+
+
+task 2 
+
+create 2 hosted zones
+
+mumbai.amaldeep.tech
+paris.amaldeep.tech
+
+create ns records
+
+site.mumbai.
+A record 
+
+site.paris.
+A record
+
+URL: http://site.mumbai.amaldeep.tech/
+URL: http://site.paris.amaldeep.tech/
+Screenshot: NS records - mumbai.amaldeep.tech, paris.amaldeep.tech
+Screenshot: A record - 	site.mumbai.amaldeep.tech
+Screenshot: A record - site.paris.amaldeep.tech
+
+
+task 3 
+
+create 2 elastic ip
+create target group 
+create nlb 
+assign elastic ip 
+
+
+shopping. 
+
+
+URL: http://shopping.amaldeep.tech
+URL: https://shopping.amaldeep.tech
+Screenshot: Elastic IPs
+Screenshot: Dig result
+Screenshot: My IP in apache logs 
+
+
+
+Refer https://www.youtube.com/watch?v=8PtSAncWNwM
+
+In the setup described in task 3 will not redirect http to https as NLB is working in network layer 4. This can be covered with either Cloudfront or `Application Load Balancer-type Target Group for Network Load Balancer`. The documentation is here: https://aws.amazon.com/blogs/networking-and-content-delivery/application-load-balancer-type-target-group-for-network-load-balancer/
+
+Instances can be part of multiple target groups. But one target group can be associated with only one load balancer. So created another target group with same instances and associated it with an ALB. On top of that, created a new target group, and target is set to ALB instead of instances. Now we have 3 target groups. 2 of them are containing instances as targets and the other one has ALB as target. 
+Created a new NLB with 2 listeners for ports 80 and 443. Listener on port 80 will forward requests to ALB and listener on port 443 will directly send requests to target group containing instances. 
+
+In ALB, requests coming to port 80 will be redirected to port 443, which is not possible in NLB. This way we can channel the traffic through secure channel only. 
+
+curl -IL http://shopping.amaldeep.tech/
+HTTP/1.1 301 Moved Permanently
+Server: awselb/2.0
+Date: Thu, 15 Dec 2022 15:23:09 GMT
+Content-Type: text/html
+Content-Length: 134
+Connection: keep-alive
+Location: https://shopping.amaldeep.tech:443/
+
+HTTP/1.1 200 OK
+Date: Thu, 15 Dec 2022 15:23:09 GMT
+Server: Apache/2.4.54 ()
+X-Powered-By: PHP/7.4.33
+Upgrade: h2,h2c
+Connection: Upgrade
+Content-Type: text/html; charset=UTF-8
+
+
+```
+http to https redirection
+https://i-407.com/en/blog/tech/n7/
+```
+
+
+
+
+task 4 
+
+create 2 IAM users
+mumbai-admin
+paris-admin
+
+https://797041117166.signin.aws.amazon.com/console
+mumbai-admin
+
+
+list all hosted zones
+manage records in 1 zone 
+
+
+Screenshot: Error when accessing paris zone as mumbai admin
+Screenshot: Error when accessing mumbai zone as paris admin
+Screenshot: Added record under mumbai zone as mumbai-admin user
+Screenshot: Added record under paris zone as paris-admin user 
+Screenshot: Policy under mumbai-admin
+Screenshot: Policy under paris-admin
+
+
+
+
+
+{
+"Version": "2012-10-17",
+"Statement": [
+{
+"Effect": "Allow",
+"Action": [
+"route53:GetHostedZone",
+"route53:ListResourceRecordSets",
+"route53:ListHostedZones",
+"route53:ChangeResourceRecordSets",
+"route53:ListResourceRecordSets",
+"route53:GetHostedZoneCount",
+"route53:ListHostedZonesByName"
+],
+"Resource": "arn:aws:route53:::hostedzone/<id>"
+},
+{
+"Effect": "Allow",
+"Action": [
+"route53:GetHostedZone",
+"route53:ListResourceRecordSets",
+"route53:ListHostedZones",
+"route53:ChangeResourceRecordSets",
+"route53:ListResourceRecordSets",
+"route53:GetHostedZoneCount",
+"route53:ListHostedZonesByName"
+],
+"Resource": "arn:aws:route53:::hostedzone/<id2>"
+}
+]
+}
+
+
+
+
+paris
+
+
+{
+"Version": "2012-10-17",
+"Statement": [
+{
+"Effect": "Allow",
+"Action": [
+"route53:GetHostedZone",
+"route53:ListResourceRecordSets",
+"route53:ListHostedZones",
+"route53:ListResourceRecordSets",
+"route53:GetHostedZoneCount",
+"route53:ListHostedZonesByName"
+],
+"Resource": "*"
+},
+{
+"Effect": "Allow",
+"Action": [
+"route53:*", 
+"route53domains:*"
+],
+"Resource": "arn:aws:route53:::hostedzone/Z00772591515N9KMI9NJR"
+}
+]
+}
+
+
+
+mumbai
+
+{
+"Version": "2012-10-17",
+"Statement": [
+{
+"Effect": "Allow",
+"Action": [
+"route53:GetHostedZone",
+"route53:ListResourceRecordSets",
+"route53:ListHostedZones",
+"route53:ListResourceRecordSets",
+"route53:GetHostedZoneCount",
+"route53:ListHostedZonesByName"
+],
+"Resource": "*"
+},
+{
+"Effect": "Allow",
+"Action": [
+"route53:*", 
+"route53domains:*"
+],
+"Resource": "arn:aws:route53:::hostedzone/Z06590001LBOJVSFCFGFZ"
+}
+]
+}
+
+
+
+
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "route53:GetHostedZone",
+                "route53:ListHostedZones",
+                "route53:GetHostedZoneCount",
+                "route53:ListHostedZonesByName"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "route53:*",
+                "route53domains:*"
+            ],
+            "Resource": "arn:aws:route53:::hostedzone/Z00772591515N9KMI9NJR"
+        }
+    ]
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 16 dec 2022
+
+
+
+Screenshot: CPU utilization in of instance in Cloudwatch > Metrics
+Screenshot: Cloudwatch alarm in `in alarm` state
+
+
+
+
+
+
+
+
+
+
+
+# 19 dec 2022
+
+dynamic autoscaling group 
+
+
+Screenshot: Dynamic scaling policies 
+Screenshot: Cloudwatch Alarm
+Screenshot: ASG activity 
+
+
+
+create rds 
+
+admin
+olS3uC#7S15$
+
+Screenshot: database console
+Screenshot: Connection to RDS 
+
+
+
+
+
+
+
+
+
+
+
+
+# 20 dec 2022
+
+
+
+
+
+
+use company;
+
+CREATE TABLE shopping( id int(5),name varchar(255), age int(3),email varchar(255));
+INSERT INTO shopping(id, name,age,email) VALUES(101,"alex",30,"alex@gmail.com");
+INSERT INTO shopping(id, name,age,email) VALUES(102,"don",20,"don@gmail.com");
+INSERT INTO shopping(id, name,age,email) VALUES(103,"kevin",25,"kevin@gmail.com");
+INSERT INTO shopping(id, name,age,email) VALUES(104,"devon",35,"devon@gmail.com");
+INSERT INTO shopping(id, name,age,email) VALUES(105,"john",42,"john@gmail.com");
+INSERT INTO shopping(id, name,age,email) VALUES(106,"ron",38,"ron@gmail.com");
+INSERT INTO shopping(id, name,age,email) VALUES(107,"thomas",19,"thomas@gmail.com");
+INSERT INTO shopping(id, name,age,email) VALUES(108,"fuji",34,"fuji@gmail.com");
+
+
+
+
+
+create rds 
+create read replica 
+
+
+add routing53 shopping-read.amaldeep.tech
+
+
+
+Screenshot: select * from all 
+Screenshot: write from read 1 error 
+
+
+
+
+Screenshot: Read operation from master DB; Write operation from master
+Screenshot: Read operation from read-replica-1 ; Write operation from read-replica-1
+Screenshot: Read operation from read-replica-2 ; Write operation from read-replica-2
+Screenshot: Dig result of read replica load balancing domain > getting different values in each query since routing is set to weighted 
+Screenshot: Read operation from load balanced read replicas    
+
+
+
+
+
+
+
+
+# 21 dec 2022 
+
+terraform --version 
+
+
+Screenshot: Terraform installed in EC2 instance
+Screenshot: Terraform installed in PC 
+
+
+terraform init 
+
+Screenshot: Terrafotm conf files after terraform init
+
+Screenshot: terraform plan output
+Screenshot: terraform apply output
+Screenshot: terraform public IP from output
+Screenshot: terraform public IP from terraform.tfstate file
+
+
+
+remove one sg 
+
+terraform plan 
+terrafoem apply 
+
+Screenshot: Security groups after removing one
+Screenshot: terraform apply 
+Screenshot: Security groups after re-apply (terraform configuration is idempotent)

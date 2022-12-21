@@ -522,8 +522,55 @@ hash, checksum
 
 
 https://docs.aws.amazon.com/cli/latest/userguide/cli-services-ec2-instances.html
+https://docs.aws.amazon.com/vpc/latest/userguide/vpc-subnets-commands-example.html
 
 
 
 
 
+
+
+
+
+
+
+
+# 09 dec 2022
+
+
+
+
+
+
+
+
+
+
+# 13 dec 2022
+
+
+
+
+
+
+
+# 16 dec 2022
+
+Cloudwatch cannot read memory utilization by default 
+
+
+
+
+
+
+
+# 19 dec 2022
+
+
+rds proxy 
+
+
+
+
+
+rds load balancing 
