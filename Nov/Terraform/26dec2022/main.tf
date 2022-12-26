@@ -136,7 +136,7 @@ resource "aws_route_table_association" "this_public" {
 
 resource "aws_route_table_association" "this_private" {
     count = "${length(var.private_subnet)}"
-    subnet_id = aws_subnet.this_public_subnet["${keys(var.private_subnet)[count.index]}"].id
+    subnet_id = aws_subnet.this_private_subnet["${keys(var.private_subnet)[count.index]}"].id
     route_table_id = aws_route_table.this_private_route.id 
 }
 
