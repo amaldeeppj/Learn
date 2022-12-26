@@ -1787,7 +1787,6 @@ Screenshot: Terrafotm conf files after terraform init
 
 Screenshot: terraform plan output
 Screenshot: terraform apply output
-Screenshot: terraform public IP from output
 Screenshot: terraform public IP from terraform.tfstate file
 
 
@@ -1797,6 +1796,78 @@ remove one sg
 terraform plan 
 terrafoem apply 
 
-Screenshot: Security groups after removing one
+Screenshot: Security groups after removing one rule
 Screenshot: terraform apply 
 Screenshot: Security groups after re-apply (terraform configuration is idempotent)
+
+
+
+
+
+
+# 22 dec 2022
+
+
+task 1 
+
+remove tfstate file 
+
+key gen mykey 
+
+Task 1 
+Screenshot: Key generation 
+
+
+Task 2
+Screenshot: inputs.tf
+Screenshot: provider.tf 
+Screenshot: Key in console 
+
+
+Task 3 
+Screenshot: Security groups 
+
+
+
+Task 4 
+Screenshot: Security group rules under instance 
+Screenshot: terraform state list 
+Screenshot: Output 
+
+
+
+public ip
+dns 
+ssh link 
+ec2 id 
+ec2 arn 
+
+
+
+
+
+
+
+# 23 dec 2022
+
+
+
+add default tags 
+
+
+Screenshot: changes to apply after adding default_tags under provider 
+Screenshot: tags updated using default tags 
+
+create common tags; type map 
+
+Screenshot: Variables not allowed inside another variable
+Screenshot: Variables declared through local values(Local values are like a function's temporary local variables)
+
+modify security group name 
+add lifecycle 
+Screenshot: Security group name updated by enabling the meta-argument create_before_destroy in lifecycle block
+
+update security group description 
+add name prefix for security group name
+Screenhot: Security group description (updated with the help of meta-argument create_before_destroy and name_prefix argument for security group) 
+

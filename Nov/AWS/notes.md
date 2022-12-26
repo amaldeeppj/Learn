@@ -574,3 +574,35 @@ rds proxy
 
 
 rds load balancing 
+
+
+
+
+
+
+
+
+
+
+# 26 dec 2022
+
+
+
+
+# NAT gateway 
+A public NAT gateway can be used to connect to internet from private subnets. 
+The public NAT gateway needs an elastic IP and has to be in a public subnet. 
+https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html
+
+
+
+
+
+
+doubts: 
+
+1) Internet Gateways can be imported using the id, e.g.,
+   $ terraform import aws_internet_gateway.gw igw-c0a643a9
+
+2) how to modfy local routing 
+

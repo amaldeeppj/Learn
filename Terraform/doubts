@@ -1,2 +1,3 @@
 how to specify the subnet and security group
-why no public ip output with ec2
+why no public ip output with ec2 - fixed - enable public ip in subnet 
+
