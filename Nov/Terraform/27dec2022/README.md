@@ -10,9 +10,8 @@
 Name | Version
 --- | ---
 Terraform | >= v1.3.6
---- | ---
 AWS | >= v4.48.0
---- | --- 
+ 
 
 
 # Inputs 
