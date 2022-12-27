@@ -29,5 +29,5 @@ enable_nat_gateway | Should be `true` to enable nat gateway | Yes
 
 Value | Description
 --- | --- 
-available_zones_count | Number of availability zones in specified region
+availability_zones_count | Number of availability zones in specified region
 vpc_id | VPC id
