@@ -24,3 +24,10 @@ project | Project name, to be added in the name tag | No
 environment | Project environment, to be added in the name tag | No 
 enable_nat_gateway | Should be `true` to enable nat gateway | Yes
 
+
+## Outputs 
+
+Value | Description
+--- | --- 
+available_zones_count | Number of availability zones in specified region
+vpc_id | VPC id
