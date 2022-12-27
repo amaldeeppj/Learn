@@ -31,3 +31,9 @@ Value | Description
 --- | --- 
 availability_zones_count | Number of availability zones in specified region
 vpc_id | VPC id
+
+
+## Remaining upgrades 
+
+* Add subnet ids to the output
+* Convert the code into module
