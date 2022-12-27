@@ -1871,3 +1871,20 @@ update security group description
 add name prefix for security group name
 Screenhot: Security group description (updated with the help of meta-argument create_before_destroy and name_prefix argument for security group) 
 
+
+
+
+
+
+# 27 dec 2022
+
+
+
+print az 1 and az 2 of mumbai 
+print az 1 and az 2 of virginia 
+
+cidr block of first 3 subnets subnets 
+
+https://paste.ee/p/fJwWb
+
+update code pastebin 
