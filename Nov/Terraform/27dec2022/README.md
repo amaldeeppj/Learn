@@ -1,11 +1,11 @@
-###### Simple VPC 
+# Simple VPC 
 
 * Creates a VPC in specified region with specified CIDR, creates private and public subnets in all availability zones. 
 * Optional NAT Gateway. There will be only one NAT Gateway, and it will be shared by all private subnets
 * Can be used for development environment
 
 
-# Requirements
+## Requirements
 
 Name | Version
 --- | ---
@@ -14,7 +14,7 @@ AWS | >= v4.48.0
  
 
 
-# Inputs 
+## Inputs 
 
 Value | Description | Optional
 --- | --- | ---
