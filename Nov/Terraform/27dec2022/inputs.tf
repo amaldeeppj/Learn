@@ -37,7 +37,5 @@ locals {
   }
 }
 
-locals {
-  region = var.region
-}
+
 
