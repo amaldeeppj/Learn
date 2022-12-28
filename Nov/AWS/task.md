@@ -1897,3 +1897,25 @@ update code pastebin
 
 terraform state list 
 
+updated code by replacing length function with local variable.
+
+
+
+
+
+
+i-0a22ecb739d35c798
+
+
+
+Instance id of version1: i-0c711b3430f8e6a58
+Instance id of version2: i-0a0da1418b997c4ba
+
+
+
+URL in output 
+
+code: https://paste.ee/p/vEGcB
+EC2 instances in console 
+Instance id of version1: i-0c711b3430f8e6a58
+Instance id of version2: i-0a0da1418b997c4ba
