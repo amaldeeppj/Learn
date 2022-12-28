@@ -19,7 +19,7 @@ resource "aws_internet_gateway" "this_igw" {
 }
 
 resource "aws_subnet" "this_public" {
-    count = length(data.aws_availability_zones.available.names)
+    count = local.azs
     vpc_id = aws_vpc.this_vpc.id 
     map_public_ip_on_launch = true 
     cidr_block = cidrsubnet(var.vpc_cidr, 4, "${count.index}")
@@ -31,10 +31,10 @@ resource "aws_subnet" "this_public" {
 }
 
 resource "aws_subnet" "this_private" {
-    count = length(data.aws_availability_zones.available.names)
+    count = local.azs
     vpc_id = aws_vpc.this_vpc.id 
     map_public_ip_on_launch = false 
-    cidr_block = cidrsubnet(var.vpc_cidr, 4, "${sum([count.index, length(data.aws_availability_zones.available.names)])}")
+    cidr_block = cidrsubnet(var.vpc_cidr, 4, "${sum([count.index, local.azs])}")
     availability_zone = data.aws_availability_zones.available.names["${count.index}"]
 
     tags = {
@@ -98,14 +98,14 @@ resource "aws_route_table" "this_private_route" {
 }
 
 resource "aws_route_table_association" "this_public" {
-    count = length(data.aws_availability_zones.available.names)
+    count = local.azs
     subnet_id = aws_subnet.this_public["${count.index}"].id
     route_table_id = aws_route_table.this_public_route.id
 }
 
 
 resource "aws_route_table_association" "this_private" {
-    count = var.enable_nat_gateway ? length(data.aws_availability_zones.available.names) : 0
+    count = var.enable_nat_gateway ? local.azs : 0
     subnet_id = aws_subnet.this_private["${count.index}"].id
     route_table_id = aws_route_table.this_private_route[0].id 
 }

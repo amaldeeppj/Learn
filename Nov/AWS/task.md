@@ -1888,3 +1888,12 @@ cidr block of first 3 subnets subnets
 https://paste.ee/p/fJwWb
 
 update code pastebin 
+
+
+
+
+
+# 28 dec 2022
+
+terraform state list 
+
