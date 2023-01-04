@@ -1919,3 +1919,38 @@ code: https://paste.ee/p/vEGcB
 EC2 instances in console 
 Instance id of version1: i-0c711b3430f8e6a58
 Instance id of version2: i-0a0da1418b997c4ba
+
+
+
+
+
+
+
+
+
+
+
+
+# 30 dec 2022
+
+create vpc 
+
+
+
+
+
+Task 1 
+terraform state list 
+instances in console 
+
+
+Task 2
+terraform state list 
+instances in console 
+
+
+Task 3 
+3 work spaces, dev workspace state list
+prod workspace state list
+instances in console 
+

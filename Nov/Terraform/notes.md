@@ -49,6 +49,7 @@ cannot remove existing security group, need to create a new one and attach, then
 
 # count 
 has issues when working with lists. if order of list elements are modified, count will have to create the resources 
+resources will be saved into array in tfstate file
 reources are linked to index order of count. so index order has changed, resource will be recreated 
 subnets[0].id
 subnets[1].id
@@ -69,3 +70,25 @@ array and count should not used together
 
 > In list(string), numbers will be converted to string
 
+in for_each, resources will be saved into map
+subnet["web"].id
+
+
+
+# Terraform workspace 
+
+terraform workspace new <workspace>
+terraform workspace list 
+terraform workspace select <workspace>
+
+
+bash show workspace in prompt 
+
+
+wrapper in bash 
+
+
+# dynamic blocks
+repeatable nested blocks inside top level blocks
+
+labels?
