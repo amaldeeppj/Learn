@@ -276,7 +276,7 @@ resource "aws_instance" "database-test" {
   key_name                    = var.test_ssh_key
   subnet_id                   = aws_subnet.private_subnet.id
   vpc_security_group_ids      = [aws_security_group.internalssh_sg.id, aws_security_group.db_sg.id]
-  user_data                   = file("database.sh")
+  user_data                   = data.template_file.db_credentials.rendered
   user_data_replace_on_change = true
   depends_on = [
     aws_nat_gateway.nat,

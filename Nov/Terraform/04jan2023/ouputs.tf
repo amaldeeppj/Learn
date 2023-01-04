@@ -9,6 +9,6 @@ output "db" {
 
 
 output "frontend" {
-    value = data.template_file.db_credentials_frontend
+    value = data.template_file.db_credentials_frontend.rendered
   
 }
