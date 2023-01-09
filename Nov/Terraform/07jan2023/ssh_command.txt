@@ -1,0 +1,1 @@
+ssh -i ./mynewkey.pem ec2-user@43.205.230.95

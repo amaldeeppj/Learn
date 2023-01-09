@@ -7,6 +7,9 @@ https://developer.hashicorp.com/terraform/tutorials/modules
 
 https://developer.hashicorp.com/terraform/tutorials/certification/associate-study?in=terraform%2Fcertification
 
+https://developer.hashicorp.com/terraform/language
+
+
 
 
 root module - conf files in current working directory   

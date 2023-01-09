@@ -92,3 +92,33 @@ wrapper in bash
 repeatable nested blocks inside top level blocks
 
 labels?
+
+
+# terraform will not save current state to tfstate file while refreshing, it will keep the latest state in memory
+# tfstate will be updated only when applying 
+
+# prefix list
+
+# terraform taint vs replace
+
+# terraform.tfvars
+# ec2.auto.tfvars
+# *.auto.tfvars
+
+# terraform logs
+https://www.suse.com/support/kb/doc/?id=000020022
+https://developer.hashicorp.com/terraform/internals/debugging
+
+# terraform import 
+
+# flatten 
+
+# 
+variable "users" {
+    type = list(string)
+    default = ["John", "Lennon", "Steve", "Jobs"]
+}
+
+output "users_map" {
+    default = { for item in var.users: lower(item) => length(item) }
+}
